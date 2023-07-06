@@ -184,5 +184,3 @@ encoded_column loadEncodedColumn(string col_name, string encoding, int num_entri
   //cout << endl;
   //return 0;
 /*}*/
-
-
