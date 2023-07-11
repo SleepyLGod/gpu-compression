@@ -9,7 +9,7 @@
 
 using namespace std;
 
-//#define DATA_DIR "/home/ubuntu/deltafor/test/bench/data/"
+//#define DATA_DIR "/home/dong/Git-repos/gpu-compression/test/ssb/data/"
 
 int delta(int*& in, int*& out, int num_entries) {
   for (int i = num_entries - 1; i > 0; i--) {
@@ -38,7 +38,7 @@ uint binPack(uint*&in, uint*& out, uint*& block_offsets, uint num_entries) {
   uint miniblock_size = uint(block_size / miniblock_count);
   uint num_blocks = (num_entries + block_size - 1) / block_size;
 
-  for (uint block_start=0; block_start<num_entries; block_start += block_size) {
+  for (uint block_start=0; block_start < num_entries; block_start += block_size) {
     uint block_index = block_start / block_size;
     block_offsets[block_index] = offset;
 
@@ -54,7 +54,7 @@ uint binPack(uint*&in, uint*& out, uint*& block_offsets, uint num_entries) {
 
     uint miniblock_size = block_size / miniblock_count;
     uint* miniblock_bitwidths = new uint[miniblock_count];
-    for (int i=0; i<miniblock_count; i++) miniblock_bitwidths[i] = 0;
+    for (int i = 0; i < miniblock_count; i++)   miniblock_bitwidths[i] = 0;
 
     for (uint miniblock = 0; miniblock < miniblock_count; miniblock++) {
       for (uint i = 0; i < miniblock_size; i++) {
@@ -65,8 +65,8 @@ uint binPack(uint*&in, uint*& out, uint*& block_offsets, uint num_entries) {
 
     // Extra for Simple BinPack
     uint max_bitwidth = miniblock_bitwidths[0];
-    for (int i=1; i<miniblock_count; i++) max_bitwidth = max(max_bitwidth, miniblock_bitwidths[i]);
-    for (int i=0; i<miniblock_count; i++) miniblock_bitwidths[i] = max_bitwidth;
+    for (int i = 1; i < miniblock_count; i++) max_bitwidth = max(max_bitwidth, miniblock_bitwidths[i]);
+    for (int i = 0; i < miniblock_count; i++) miniblock_bitwidths[i] = max_bitwidth;
     if (block_start == 0) cout << "max_bitwidth " << max_bitwidth << endl;
 
     out[offset] = min_val;
