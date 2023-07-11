@@ -77,10 +77,10 @@ gen_phone(long ind, char *target, long seed)
     RANDOM(acode, 100, 999, seed);
     RANDOM(exchg, 100, 999, seed);
     RANDOM(number, 1000, 9999, seed);	
-    sprintf(target, "%02d", 10 + (ind % NATIONS_MAX));
-    sprintf(target + 3, "%03d", acode);
-    sprintf(target + 7, "%03d", exchg);
-    sprintf(target + 11, "%04d", number);
+    sprintf(target, "%02ld", 10 + (ind % NATIONS_MAX));
+    sprintf(target + 3, "%03ld", acode);
+    sprintf(target + 7, "%03ld", exchg);
+    sprintf(target + 11, "%04ld", number);
     target[2] = target[6] = target[10] = '-';	
     return;
 }
@@ -91,8 +91,8 @@ gen_category(char *target, long seed){
   RANDOM(num1,1,5,seed);
   RANDOM(num2,1,5,seed);
   strcpy(target,"MFGR");
-  sprintf(target + 4, "%01d", num1);
-  sprintf(target + 5, "%01d", num2);
+  sprintf(target + 4, "%01ld", num1);
+  sprintf(target + 5, "%01ld", num2);
   return;
 } 
 
@@ -410,14 +410,14 @@ long mk_part(long index, part_t *p)
 	
 	
 	RANDOM(mfgr, P_MFG_MIN, P_MFG_MAX, P_MFG_SD);
-	sprintf(p->mfgr, "%s%d", "MFGR#", mfgr);
+	sprintf(p->mfgr, "%s%ld", "MFGR#", mfgr);
 
     RANDOM(cat, P_CAT_MIN, P_CAT_MAX, P_CAT_SD);
-    sprintf(p->category, "%s%d", p->mfgr,cat);
+    sprintf(p->category, "%s%ld", p->mfgr,cat);
 	
 
 	RANDOM(brnd, P_BRND_MIN, P_BRND_MAX, P_BRND_SD);
-	sprintf(p->brand,"%s%d",p->category,brnd);
+	sprintf(p->brand,"%s%ld",p->category,brnd);
 
 	p->tlen = pick_str(&p_types_set, P_TYPE_SD, p->type);
 	p->tlen = strlen(p_types_set.list[p->tlen].text);
@@ -617,8 +617,8 @@ int gen_city(char *cityName, char *nationName){
 
 
 /*
-P_NAME is as long as 55 bytes in TPC-H, which is un¬reasonably large. 
-We reduce it to 22 by limiting to a concatena¬tion of two colors (see [TPC-H], pg 94). 
+P_NAME is as long as 55 bytes in TPC-H, which is unï¿½reasonably large. 
+We reduce it to 22 by limiting to a concatenaï¿½tion of two colors (see [TPC-H], pg 94). 
 We also add a new column named P_COLOR that could be used in queries where currently a 
 color must be chosen by substring from P_NAME.
 */

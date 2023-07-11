@@ -136,7 +136,7 @@ int main(int argc, char** argv) {
   cout << "Encoding test" << num_bits << endl;
   string col_name = "test" + to_string(num_bits);
 
-  int len = 1<<28;
+  int len = 1 << 28;
 
   uint* raw = loadColumn<uint>(col_name, len);
   cout << "Loaded Column" << endl;
@@ -144,7 +144,7 @@ int main(int argc, char** argv) {
   int block_size = 128;
   int elem_per_thread = 4;
   int tile_size = block_size * elem_per_thread;
-  int adjusted_len = ((len + tile_size - 1)/tile_size) * tile_size;
+  int adjusted_len = ((len + tile_size - 1) / tile_size) * tile_size;
   int num_blocks = adjusted_len / block_size;
 
   uint *col = new uint[adjusted_len];
@@ -154,7 +154,7 @@ int main(int argc, char** argv) {
   uint *offsets = new uint[num_blocks + 1]();
 
   // extend with the last value to make it multiple of 128
-  for (int i = len; i < adjusted_len ;i++) col[i] = raw[len-1];
+  for (int i = len; i < adjusted_len; i++) col[i] = raw[len - 1];
 
   uint arr_byte_size = binPack(col, out, offsets, adjusted_len);
   cout << "Num Elements " << len << endl;

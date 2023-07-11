@@ -45,7 +45,7 @@ for line in lines:
     parts[3] = str(int(parts[4]) * 10 + int(parts[3][-1]))
     o.append('|'.join(parts))
   except:
-    print line
+    print(line)
     break
 
 f = open('supplier.tbl.p','w')
@@ -64,7 +64,7 @@ for line in lines:
     parts[3] = str(int(parts[4]) * 10 + int(parts[3][-1]))
     o.append('|'.join(parts))
   except:
-    print line
+    print(line)
     break
 
 f = open('customer.tbl.p','w')
@@ -83,7 +83,7 @@ for line in lines:
     parts[4] = parts[4].split('#')[-1]
     o.append('|'.join(parts))
   except:
-    print line
+    print(line)
     break
 
 f = open('part.tbl.p','w')

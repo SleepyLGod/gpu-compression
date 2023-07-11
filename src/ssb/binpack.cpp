@@ -60,8 +60,8 @@ uint binPack(uint*&in, uint*& out, uint*& block_offsets, uint num_entries) {
 
     // Extra for Simple BinPack
     uint max_bitwidth = miniblock_bitwidths[0];
-    for (int i=1; i<miniblock_count; i++) max_bitwidth = max(max_bitwidth, miniblock_bitwidths[i]);
-    for (int i=0; i<miniblock_count; i++) miniblock_bitwidths[i] = max_bitwidth;
+    for (int i = 1; i < miniblock_count; i++) max_bitwidth = max(max_bitwidth, miniblock_bitwidths[i]);
+    for (int i = 0; i < miniblock_count; i++) miniblock_bitwidths[i] = max_bitwidth;
     if (block_start == 0) cout << "max_bitwidth " << max_bitwidth << endl;
 
     out[offset] = min_val;

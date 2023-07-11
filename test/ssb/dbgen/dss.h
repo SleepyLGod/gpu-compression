@@ -359,7 +359,7 @@ extern tdef tdefs[];
  */
 #define  C_SIZE       165
 #define  C_NAME_TAG   "Customer#"
-#define  C_NAME_FMT   "%s%09d"
+#define  C_NAME_FMT   "%s%09ld"
 #define  C_MSEG_MAX    5
 #define  C_ABAL_MIN   -99999
 #define  C_ABAL_MAX    999999

@@ -7,14 +7,14 @@ __forceinline__ __device__ int decodeElementDBin(int i, uint* data_block) {
   int reference = reinterpret_cast<int*>(data_block)[0];
 
   // Index of miniblock containing i
-  uint miniblock_index = i/32;
+  uint miniblock_index = i / 32;
 
   // Miniblock bitwidths
   uint miniblock_bitwidths = data_block[1];
 
   // Miniblock offset into data_block array
   uint miniblock_offset = 0;
-  for (int j=0; j<miniblock_index; j++) {
+  for (int j = 0; j < miniblock_index; j++) {
     miniblock_offset += (miniblock_bitwidths & 255);
     miniblock_bitwidths >>= 8;
   }
@@ -26,12 +26,12 @@ __forceinline__ __device__ int decodeElementDBin(int i, uint* data_block) {
   uint index_into_miniblock = i & (32 - 1);
 
   uint start_bitindex = (bitwidth * index_into_miniblock);
-  uint start_intindex = 2 + start_bitindex/32;
+  uint start_intindex = 2 + start_bitindex / 32;
 
   unsigned long long element_block = (((unsigned long long)data_block[miniblock_offset + start_intindex + 1]) << 32) | data_block[miniblock_offset + start_intindex];
-  start_bitindex = start_bitindex & (32-1);
+  start_bitindex = start_bitindex & (32 - 1);
 
-  uint element = (element_block & (((1LL<<bitwidth) - 1LL) << start_bitindex)) >> start_bitindex;
+  uint element = (element_block & (((1LL << bitwidth) - 1LL) << start_bitindex)) >> start_bitindex;
 
   return reference + element;
 }
@@ -59,19 +59,19 @@ __forceinline__ __device__ void LoadDBinPack(uint* block_start,
   // Lets load 4 blocks from the encoded column
   uint start_offset = block_starts[0] - 1;
   uint end_offset = block_starts[4];
-  for (int i=0; i<4; i++) {
-    uint index = start_offset + threadIdx.x + i*128;
+  for (int i = 0; i < 4; i++) {
+    uint index = start_offset + threadIdx.x + i * 128;
     if (index < end_offset)
-      data_block[threadIdx.x + i*128] = data[index];
+      data_block[threadIdx.x + i * 128] = data[index];
   }
   __syncthreads();
 
   int first_value = data_block[0];
   data_block = data_block + 1;
 
-  for (int i=0; i<4; i++) {
+  for (int i = 0; i < 4; i++) {
     if (is_last_tile) {
-      if (threadIdx.x + i*128 < num_tile_items) {
+      if (threadIdx.x + i * 128 < num_tile_items) {
         items[i] = decodeElementDBin(threadIdx.x, data_block + block_starts[i] - block_starts[0]);
       }
     }

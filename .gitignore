@@ -3,3 +3,9 @@
 .fleet
 cub
 bin
+
+test/ssb/data/
+test/ssb/dbgen/*.o
+test/ssb/dbgen/dbgen
+test/ssb/loader/loader
+test/ssb/dbgen/qgen

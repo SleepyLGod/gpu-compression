@@ -36,7 +36,7 @@ uint deltaBinPack(int*&in, int*& out, uint*& block_offsets, uint num_entries) {
   uint miniblock_size = uint(block_size / miniblock_count);
   uint num_tiles = (num_entries + tile_size - 1) / tile_size;
 
-  for (uint tile_start=0; tile_start<num_entries; tile_start += tile_size) {
+  for (uint tile_start = 0; tile_start < num_entries; tile_start += tile_size) {
     uint block_index = tile_start / block_size;
     int first_val = in[0];
 
@@ -44,7 +44,7 @@ uint deltaBinPack(int*&in, int*& out, uint*& block_offsets, uint num_entries) {
     offset++;
 
     if (tile_start == 0) {
-      for (int i=0; i<512; i++) cout << in[i] << " ";
+      for (int i = 0; i < 512; i++) cout << in[i] << " ";
       cout << endl;
     }
 
@@ -95,8 +95,8 @@ uint deltaBinPack(int*&in, int*& out, uint*& block_offsets, uint num_entries) {
 
       // Extra for Simple BinPack
       uint max_bitwidth = miniblock_bitwidths[0];
-      for (int i=1; i<miniblock_count; i++) max_bitwidth = max(max_bitwidth, miniblock_bitwidths[i]);
-      for (int i=0; i<miniblock_count; i++) miniblock_bitwidths[i] = max_bitwidth;
+      for (int i = 1; i < miniblock_count; i++) max_bitwidth = max(max_bitwidth, miniblock_bitwidths[i]);
+      for (int i = 0; i < miniblock_count; i++) miniblock_bitwidths[i] = max_bitwidth;
       if (tile_start == 0) cout << "max_bitwidth " << max_bitwidth << endl;
 
       outp[offset] = miniblock_bitwidths[0] + (miniblock_bitwidths[1] << 8) +
@@ -110,7 +110,7 @@ uint deltaBinPack(int*&in, int*& out, uint*& block_offsets, uint num_entries) {
           if (shift + bitwidth > 32) {
             if (shift != 32) outp[offset] += inp[miniblock * miniblock_size + i] << shift;
             offset++;
-            shift = (shift + bitwidth) & (32-1);
+            shift = (shift + bitwidth) & (32 - 1);
             outp[offset] = inp[miniblock * miniblock_size + i] >> (bitwidth - shift);
           } else {
             outp[offset] += inp[miniblock * miniblock_size + i] << shift;
@@ -164,7 +164,7 @@ int main(int argc, char** argv) {
   cout << "Encoding test" << num_bits << endl;
   string col_name = "test" + to_string(num_bits);
 
-  int len = 1<<28;
+  int len = 1 << 28;
 
   uint *raw = loadColumn<uint>(col_name, len);
   cout << "Loaded Column" << endl;

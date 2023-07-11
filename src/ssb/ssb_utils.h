@@ -16,7 +16,7 @@
 using namespace std;
 //using namespace cub;
 
-#define SF 20
+#define SF 1
 
 #define BASE_PATH "/home/dong/Git-repos/gpu-compression/test/ssb/data/"
 
@@ -45,7 +45,7 @@ using namespace std;
 #endif
 
 int index_of(string* arr, int len, string val) {
-  for (int i=0; i<len; i++)
+  for (int i = 0; i < len; i++)
     if (arr[i] == val)
       return i;
 
@@ -77,6 +77,7 @@ string lookup(string col_name) {
     return "DDATE" + to_string(index);
   } else if (col_name[0] == 't') {
     // test columns
+    cout << "../../../bench/data/" + col_name << endl;
     return "../../../bench/data/" + col_name;
   } else {
     cout << "Unknown column " << col_name << endl;
