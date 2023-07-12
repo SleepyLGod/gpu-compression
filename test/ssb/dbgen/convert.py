@@ -35,7 +35,7 @@ MIDDLE EAST
 regions = regions.split('\n')
 
 # process suppliers
-lines = open('supplier.tbl').readlines()
+lines = open('supplier.tbl', encoding = 'latin1').readlines()
 o = []
 for line in lines:
   try:
@@ -48,13 +48,13 @@ for line in lines:
     print(line)
     break
 
-f = open('supplier.tbl.p','w')
+f = open('supplier.tbl.p','w', encoding = 'latin1')
 for line in o:
   f.write(line)
 f.close()
 
 # process customers
-lines = open('customer.tbl').readlines()
+lines = open('customer.tbl', encoding = 'latin1').readlines()
 o = []
 for line in lines:
   try:
@@ -67,13 +67,13 @@ for line in lines:
     print(line)
     break
 
-f = open('customer.tbl.p','w')
+f = open('customer.tbl.p','w', encoding = 'latin1')
 for line in o:
   f.write(line)
 f.close()
 
 # process parts
-lines = open('part.tbl').readlines()
+lines = open('part.tbl', encoding = 'latin1').readlines()
 o = []
 for line in lines:
   try:

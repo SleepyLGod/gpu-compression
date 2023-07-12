@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     data_dir = args.data_directory
     # process suppliers
-    lines = open(data_dir + 'supplier.tbl').readlines()
+    lines = open(data_dir + 'supplier.tbl', encoding = 'latin1').readlines()
     o = []
     for line in lines:
         try:
@@ -58,13 +58,13 @@ if __name__ == '__main__':
             print(line)
             break
 
-    f = open(data_dir + 'supplier.tbl.p','w')
+    f = open(data_dir + 'supplier.tbl.p','w', encoding = 'latin1')
     for line in o:
         f.write(line)
     f.close()
 
     # process customers
-    lines = open(data_dir + 'customer.tbl').readlines()
+    lines = open(data_dir + 'customer.tbl', encoding = 'latin1').readlines()
     o = []
     for line in lines:
         try:
@@ -77,13 +77,13 @@ if __name__ == '__main__':
             print(line)
             break
 
-    f = open(data_dir + 'customer.tbl.p','w')
+    f = open(data_dir + 'customer.tbl.p','w', encoding = 'latin1')
     for line in o:
         f.write(line)
     f.close()
 
     # process parts
-    lines = open(data_dir + 'part.tbl').readlines()
+    lines = open(data_dir + 'part.tbl', encoding = 'latin1').readlines()
     o = []
     for line in lines:
         try:
@@ -99,7 +99,7 @@ if __name__ == '__main__':
             print(line)
             break
 
-    f = open(data_dir + 'part.tbl.p','w')
+    f = open(data_dir + 'part.tbl.p','w', encoding = 'latin1')
     for line in o:
         f.write(line)
     f.close()
