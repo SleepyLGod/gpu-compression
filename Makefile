@@ -104,7 +104,7 @@ ssb_q43e: bin/ssb/q43e
 
 ssbe:ssb_q11e ssb_q12e  ssb_q13e ssb_q21e ssb_q22e ssb_q23e ssb_q31e ssb_q43e ssb_q32e ssb_q33e ssb_q34e ssb_q41e ssb_q42e ssb_q43e
 
-CUB_VER=1.8.0
+CUB_VER=1.11.0
 setup:
 	if [ ! -d "cub"  ]; then \
 		wget https://github.com/NVlabs/cub/archive/$(CUB_VER).zip; \
